@@ -1,0 +1,16 @@
+{% comment %}
+    This fragment requires a "course" object
+{% endcomment %}
+
+{% load markup %}
+{% load dept_classes %}
+
+
+<h2> {{ course.name }} </h2>
+
+<p>
+    {{ course.description|restructuredtext|course_autolink }}
+</p>
+
+{% include './course_handout_info.html' %}
+{% include './course_graph.html' %}

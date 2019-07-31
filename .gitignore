@@ -1,0 +1,12 @@
+ve
+classes_demo_site/demo.db
+classes_demo_site/media/outlines/
+build
+dist
+django_dept_classes.egg-info
+
+
+*.pyc
+*~
+.DS_Store
+*.kate-swp

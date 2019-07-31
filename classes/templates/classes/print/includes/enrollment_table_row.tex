@@ -1,0 +1,55 @@
+{% load dept_classes %}{% autoescape off %}%
+    %
+    % Course
+    {{ section.course.label }}%
+    &
+    %
+    % Section
+    {{ section.section_name }}
+    &
+    %
+    % CRN
+    {{ section.crn }}
+    &
+    %
+    % Slot or Time
+    {% if schedule.timeslot.label != 'None' %}%
+        {{ schedule.timeslot.get_start_time_display }} & {{ schedule.timeslot.get_stop_time_display }}%
+    {% else %}%
+        \multicolumn{2}{c}{}
+    {% endif %}%
+    &
+    %
+    % Days
+    {% if schedule.timeslot.label != 'None' %}%
+        {{ schedule.timeslot.get_day_display }}%
+    {% endif %}
+    &
+    %
+    % Instructor
+    {% if schedule.instructor %}%
+        {{ schedule.instructor }}{% if schedule.additional_instructors.active %}, {% endif %}%
+        {% for instr in schedule.additional_instructors.active %}%
+            {{ instr }}{% if not forloop.last %}, {% endif %}%
+        {% endfor %}%
+    {% endif %}%
+    &
+    %
+    % Location
+    {{ schedule.room }}%
+    &
+    %
+    {% with enrollment=section|get_enrollment_by_date:date %}
+    % Registration
+    {% if enrollment.registration is not None %}{{ enrollment.registration }}{% endif %}%
+    &
+    %
+    % Capacity
+    {% if enrollment.capacity is not None %}{{ enrollment.capacity }}{% endif %}%
+    &
+    %
+    % Waitlist
+    {% if enrollment.waitlist_registration is not None %}{{ enrollment.waitlist_registration }}{% endif %}%
+    \\
+    {% endwith %}
+{% endautoescape %}%

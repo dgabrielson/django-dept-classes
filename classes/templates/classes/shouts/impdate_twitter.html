@@ -1,0 +1,20 @@
+{% load djtwit humanize %}{% singlespace %}
+{% with obj=shout %}
+
+{% if obj.end_date %}
+    {{ obj.date|naturalday:"F j"|title }} – {{ obj.end_date|naturalday:"F j" }} is
+{% else %}
+    {{ obj.date|naturalday:"F j"|title }} is 
+{% endif %}
+{% if not obj.university_closed and not obj.no_class %}
+    the 
+{% endif %}
+{{ obj.title }}
+{% if obj.university_closed %}
+    – #UManitoba will be closed
+{% elif obj.no_class %}
+    – there are no classes
+{% endif %}
+
+{% endwith %}
+{% endsinglespace %}

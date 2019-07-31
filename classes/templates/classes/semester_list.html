@@ -1,0 +1,56 @@
+{% extends "classes/__base.html" %}
+
+{# ########################################### #}
+
+
+
+{% block page_title %}Semester List{% endblock %}
+{% block title %}Semester List{% endblock %}
+
+{# ########################################### #}
+
+
+{% block content %}
+
+{% if object_list %}
+    <p>
+        Click on a semester to see the list of available courses
+    </p>
+    <ul class="simple">
+        {% for object in object_list reversed %}
+            <li>
+                <a href="{{ object.get_absolute_url }}">
+                    {{ object }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>
+        There are no semesters available.
+    </p>
+{% endif %}
+
+
+
+
+{% endblock %}
+
+
+
+
+{# ########################################### #}
+
+{% block page_breadcrumbs %}
+    <span class="divider">&gt;</span>
+    {% url 'classes-semester-list' as model_list_url %}
+    {% if model_list_url %}
+        {% if model_list_url != request.path %}
+            <a href="{{ model_list_url }}">Semesters</a>
+        {% else %}
+            Semesters
+        {% endif %}
+    {% endif %}
+{% endblock page_breadcrumbs %}
+
+{# ########################################### #}

@@ -1,0 +1,28 @@
+        <tr>
+            <th>{{ sched.type }}</th>
+                {% if sched.room %}
+                    <th>Location:</th>
+                    <td>{{ sched.room }}</td>
+                {% endif %}
+            </tr>
+            {% if sched.date_range %}
+                <tr>
+                    <td></td>
+                    <th>Date{% if sched.date_range.is_plural %}s{% endif %}:</th>
+                    <td>{{ sched.date_range }}</td>
+                </tr>
+            {% endif %}
+        </tr>
+        {% if sched.instructor and sched.instructor != section.instructor %}
+            <tr>
+                <td></td>
+                {% include './section_instructor_block.html' with instructor=sched.instructor additional_instructors=sched.additional_instructors %}
+            </tr>
+        {% endif %}
+        {% if sched.timeslot.name != "None" %}
+            <tr>
+                <td></td>
+                <th>{{ sched.timeslot.label }}:</th>
+                <td>{{ sched.timeslot.display }}</td>
+            </tr>
+        {% endif %}

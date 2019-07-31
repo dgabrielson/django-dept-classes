@@ -1,0 +1,39 @@
+{% extends "classes/semester_list.html" %}
+
+
+{# ########################################### #}
+
+
+
+{% block page_title %}{{ object }} Courses{% endblock %}
+{% block title %}{{ object }} Course List{% endblock %}
+
+{# ########################################### #}
+
+
+{% block content %}
+
+
+    <ul class="simple">
+    {% for course in object.course_list %}
+        <li>
+            <a href="{% url 'classes-semester-course-detail' term_slug=object.slug course_slug=course.slug %}">
+                {{ course }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+
+
+{% endblock %}
+
+
+{# ########################################### #}
+
+{% block page_breadcrumbs %}
+    {{ block.super }}
+    <span class="divider">&gt;</span>
+    {{ object }}
+{% endblock page_breadcrumbs %}
+
+{# ########################################### #}

@@ -1,0 +1,29 @@
+{% extends "admin/change_form.html" %}
+{% load i18n %}
+
+
+{% block object-tools-items %}
+    {% if original.section_set.active.exists %}
+    <li>
+        <a href="{% url 'classes-semester-timetable-lectures' slug=original.slug %}" class="viewsitelink">
+            PDF Timetable - Lectures
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'classes-semester-timetable-labs' slug=original.slug %}" class="viewsitelink">
+            PDF Timetable - Labs
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'admin:classes-semester-print-schedule' %}?pk={{ original.pk }}" class="viewsitelink">
+            PDF Schedule
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'admin:classes-semester-print-enrollment' %}?pk={{ original.pk }}" class="viewsitelink">
+            PDF Enrollment
+        </a>
+    </li>
+    {% endif %}
+{{ block.super }}
+{% endblock %}

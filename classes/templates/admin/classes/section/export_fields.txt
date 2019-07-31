@@ -1,0 +1,12 @@
+course.label:Course
+section_name:Section
+crn
+get_instructor:Instructor
+sectionschedule_set.active.room
+sectionschedule_set.active.timeslot.get_day_display:Day
+sectionschedule_set.active.timeslot.start_time
+sectionschedule_set.active.timeslot.stop_time
+term
+capacity
+registration
+

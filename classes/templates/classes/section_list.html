@@ -1,0 +1,50 @@
+{% extends "classes/__base.html" %}
+
+{# ########################################### #}
+
+
+
+{% block page_title %}Courses{% endblock %}
+{% block title %}Courses{% endblock %}
+
+{# ########################################### #}
+
+
+{% block content %}
+
+{% regroup object_list by term as term_list %}
+
+{% for term in term_list %}
+    {% if term.list %}
+        <p>
+            <a name="#{{ term.grouper.slug }}"></a>
+            List of courses for {{ term.grouper }}:
+        </p>
+        <ul class="simple">
+            {% regroup term.list by course as course_list %}
+            {% for course in course_list %}
+                <li>
+                    {# one term per course page #}
+                    <a href="{% url 'classes-semester-course-detail' term_slug=term.grouper.slug course_slug=course.grouper.slug %}">
+                        {{ course.grouper }}
+                    </a>
+                    {% comment %}{# multiple terms per course page #}
+                    <a href="{{ course.grouper.get_absolute_url }}{% if not term.grouper.is_current %}#{{ term.grouper.slug }}{% endif %}">
+                        {{ course.grouper }}
+                    </a>
+                    {% endcomment %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+{% endfor %}
+
+
+
+
+{% endblock %}
+
+
+
+
+{# ########################################### #}

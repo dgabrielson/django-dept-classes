@@ -1,0 +1,18 @@
+{% extends "./base.html" %}
+
+{% block page_title %}Course List{% endblock %}
+{% block title %}Course Information{% endblock %}
+
+{% block content %}
+
+
+<ul class="simple">
+    {% for course in course_list %}
+        <li> <a href="{% url "classes-restricted-course-detail" slug=course.slug %}">{{ course }}</a>
+    {% endfor %}
+</ul>
+
+
+
+
+{% endblock %}

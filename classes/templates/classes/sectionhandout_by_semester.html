@@ -1,0 +1,47 @@
+{% extends './sectionhandout_list.html' %}
+
+{% block page_subtitle %} by Term{% endblock %}
+{% block subtitle %} by Term{% endblock %}
+
+{% block content_pagenav %}{% endblock %}
+
+{% block page_breadcrumbs %}
+    {{ block.super }}
+    {% url 'classes-outline-by-term' as url %}
+    {% if url %}
+        <span class="divider">&gt;</span>
+        {% if url != request.path %}
+            <a href="{{ url }}">
+                By term
+            </a>
+        {% else %}
+            By term
+        {% endif %}
+    {% endif %}
+{% endblock page_breadcrumbs %}
+
+
+{% block handout_list %}
+{% regroup sectionhandout_list by section.term as group_list %}
+{% if group_list %}
+    <p>
+    Choose a term:
+    </p>
+    <ul class="simple">
+    {% for grp in group_list %}
+        <li>
+            <a href="{% url 'classes-outline-by-term-selected' slug=grp.grouper.slug %}">
+                {{ grp.grouper }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>
+        Sorry, only terms with courses
+        that have {{ sectionhandout_title_plural }}
+        appear here.
+        (There doesn't seem to be any.)
+    </p>
+{% endif %}
+{% endblock %}

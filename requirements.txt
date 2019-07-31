@@ -1,0 +1,10 @@
+docutils
+graphviz	
+# Note: still requires graphviz to be installed on the system
+python-dateutil
+vobject
+lxml
+
+django-webcal>=0.5
+django-dept-directory
+python-latex

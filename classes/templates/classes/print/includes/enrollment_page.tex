@@ -1,0 +1,21 @@
+
+{% include 'classes/print/includes/enrollment_page_header.tex' %}
+
+\begin{longtable}{% include 'classes/print/includes/enrollment_table_spec.tex' %}%
+    \toprule
+    {% include 'classes/print/includes/enrollment_table_header.tex' %}%
+    \midrule
+    \endhead
+    \bottomrule
+    \endfoot
+    {% for section in term.section_set.advertised %}%
+        {% if not forloop.first %}{% ifchanged section.course.label %}%
+            \midrule
+        {% endifchanged %}{% endif %}%
+        {% for schedule in section.sectionschedule_set.active %}%
+            {% if schedule.type.name != 'Tutorial' and schedule.type.name != 'Session' %}
+                {% include 'classes/print/includes/enrollment_table_row.tex' %}%
+            {% endif %}
+        {% endfor %}%
+    {% endfor %}%
+\end{longtable}

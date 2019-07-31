@@ -1,0 +1,52 @@
+{% extends './_course_enrollment.html' %}
+
+{% block page_title %}{{ course.label }} - {{ term }} - Enrollment{% endblock %}
+{% block title %}{{ course.label }} – {{ term }} – Enrollment{% endblock %}
+
+{# ########################################### #}
+
+{% block page_breadcrumbs %}
+    {{ block.super }}
+    <span class="divider">&gt;</span>
+    {{ term }}
+{% endblock page_breadcrumbs %}
+
+{# ########################################### #}
+
+{% block content %}
+
+
+<table>
+    <tr>
+        <th>
+            Section
+        </th>
+        <th>
+            Registration
+        </th>
+        <th>
+            Capacity
+        </th>
+        <th>
+            Waitlist
+        </th>
+    </tr>
+    {% for section in section_list %}
+        <tr>
+            <td>
+                {{ section }}
+            </td>
+            <td>
+                {{ section.registration }}
+            </td>
+            <td>
+                {{ section.capacity }}
+            </td>
+            <td>
+                {{ section.waitlist_registration }}
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% endblock content %}

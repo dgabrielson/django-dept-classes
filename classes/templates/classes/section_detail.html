@@ -1,0 +1,23 @@
+{% extends "classes/__base.html" %}
+{% load markup %}
+{% load dept_classes %}
+
+{# ########################################### #}
+
+
+
+{% block page_title %}{{ object }} {% endblock %}
+{% block title %}{{ object }}{% endblock %}
+
+{# ########################################### #}
+
+
+{% block content %}
+
+{% include 'classes/includes/section_detail.html' with section=section hide_section_name=True %}    
+
+{% endblock %}
+
+
+{# ########################################### #}
+

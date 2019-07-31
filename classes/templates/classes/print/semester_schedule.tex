@@ -1,0 +1,17 @@
+\documentclass[letterpaper,10pt]{article}
+
+{% include 'classes/print/includes/schedule_preamble.tex' %}
+
+\begin{document}
+
+\relsize{-0.75}
+{% for term in semester_list %}
+    
+    {% include 'classes/print/includes/schedule_page.tex' %}
+    {% if not forloop.last %}
+        \newpage
+    {% endif %}
+
+{% endfor %}
+
+\end{document}

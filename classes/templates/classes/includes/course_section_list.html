@@ -1,0 +1,28 @@
+{% comment %}
+    This fragment requires a "section_list" variable.
+{% endcomment %}
+
+
+{% regroup section_list by term as term_group_list %}
+{% for t_grp in term_group_list %}
+    {% if t_grp.list %}
+        <h2>{{ t_grp.grouper }} section{{ t_grp.list|pluralize }}</h2>
+        <a name="{{ t_grp.grouper|slugify }}"></a>
+        {% regroup t_grp.list by get_section_type_display as typed_section_list %}
+        {% for ts_grp in typed_section_list %}
+            {% if ts_grp.list and ts_grp.grouper != 'Other' and ts_grp.grouper != 'Challenge for credit'  %}
+                <h3>{{ ts_grp.grouper }} section{{ ts_grp.list|pluralize }}</h3>
+
+                <p> <a name="{{ t_grp.grouper|slugify }}-{{ ts_grp.grouper|slugify }}"></a>
+                    <ul class="simple">
+                    {% for section in ts_grp.list %}
+                        <li>
+                            {% include 'classes/includes/section_detail.html' %}
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </p>
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+{% endfor %}

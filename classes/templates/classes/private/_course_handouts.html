@@ -1,0 +1,51 @@
+{% extends './_course_resources.html' %}
+
+{% block page_title %}{{ course.label }} - Additional documents{% endblock %}
+{% block title %}{{ course.label }} – Additional documents{% endblock %}
+
+{# ########################################### #}
+
+{% block page_breadcrumbs %}
+    {{ block.super }}
+    <span class="divider">&gt;</span>
+    Additional documents
+{% endblock page_breadcrumbs %}
+
+{# ########################################### #}
+
+{% block content %}
+{% if course.coursehandout_set.active %}{% spaceless %}
+    <p>
+        <strong>
+            {{ label_prefix }}
+            {% if coursehandout_title %}
+                {% if course.coursehandout_set.active|length != 1 %}
+                    <span>{{ coursehandout_title_plural|title }}</span>
+                {% else %}
+                    <span>{{ coursehandout_title|title }}</span>
+                {% endif %}
+            {% else %}
+                <span>Handout{{ course.coursehandout_set.active|pluralize }}</span>
+            {% endif %}
+        </strong>:
+        {% if course.coursehandout_set.active|length > 1 %}
+            <ul class="simple">
+                {% for coursehandout in course.coursehandout_set.active %}
+                    <li>
+                        <a href="{{ coursehandout.get_absolute_url }}">
+                            {{ coursehandout.label|capfirst }} – {{ coursehandout.get_public_display }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            {% with coursehandout=course.coursehandout_set.active.0 %}
+                <a href="{{ coursehandout.get_absolute_url }}">
+                    {{ coursehandout.label|capfirst }}
+                </a> – {{ coursehandout.get_public_display }}
+            {% endwith %}
+        {% endif %}
+    </p>
+{% endspaceless %}{% endif %}
+
+{% endblock content %}

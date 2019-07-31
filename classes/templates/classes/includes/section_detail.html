@@ -1,0 +1,36 @@
+<strong>
+    {% if not hide_section_name %}
+        {{ section.section_name }}{% endif %}{% if section.note %}:
+    {{ section.note }}{% endif %}
+</strong>
+
+<table>
+    {% if not hide_instructor_name %}
+    {% include './section_instructor_block.html' with instructor=section.instructor additional_instructors=section.additional_instructors %}
+    {% endif %}
+    {% for sectionhandout in section.sectionhandout_set.active %}
+        <tr>
+            <th>{% if forloop.first %}Handout{{ section.sectionhandout_set.active|pluralize }}:{% endif %}</th>
+            <td>
+                <a href="{{ sectionhandout.get_absolute_url }}">
+                    {{ sectionhandout.label|capfirst }}
+                </a>
+            </td>
+        </tr>
+    {% endfor %}
+    {% if section.crn %}
+        <tr>
+            <th>CRN:</th>
+            <td>{{ section.crn }}</td>
+        </tr>
+    {% endif %}
+
+    {% for sched in section.sectionschedule_set.active %}
+        {% include 'classes/includes/sectionschedule_detail.html' %}
+    {% endfor %}
+
+    {# if the exams application is also loaded, include that info #}
+    {% for exam in section.exam_set.public %}
+        {% include 'exams/includes/for_section.html' %}
+    {% endfor %}
+</table>

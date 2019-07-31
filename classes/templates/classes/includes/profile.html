@@ -1,0 +1,43 @@
+{# ########################################################## #}
+{# This template fragment expects to be have a `third_person` #}
+{# variable as a part of the context.                         #}
+{# This variable indicates whether it is *this* person        #}
+{# or a different person looking at the information           #}
+{# It is assumed that only people with the change_person      #}
+{# permission will be looking at other people's information.  #}
+{# ########################################################## #}
+
+{% load humanize static %}
+
+
+{% with section_list=person.sectionschedule_set.active.current_or_future.section_list %}
+    {% if section_list %}
+        <h3>Course{{ section_list|length|pluralize }}</h3>
+        {% for section in section_list %}
+            {% ifchanged section.term %}
+                <h4>{{ section.term }}</h4>
+            {% endifchanged %}
+                <p>
+                    <strong>{{ section.course.label }}</strong>
+                    {% include 'classes/includes/section_detail.html' %}
+                </p>
+        {% endfor %}
+    {% endif %}
+    {# TODO: All of my courses #}
+    {% if not third_person %}
+        {% url 'classes-calendar-important-dates' as link_url %}
+        {% if link_url %}
+
+            <strong>Important dates calendar feed:</strong>
+            <div class="copy-link">
+                <input id="important-dates-url" value="{{ request.scheme }}://{{ request.get_host }}{{ link_url }}" readonly type="text">
+                <span title="Copy to clipboard">
+                    <button data-clipboard-target="#important-dates-url" class="copy-link-btn" ></button>
+                </span>
+            </div>
+            <small>Use the button to copy the url; paste this into your calendar
+            program as a subscription.</small>
+
+        {% endif %}
+    {% endif %}
+{% endwith %}

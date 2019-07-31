@@ -1,0 +1,43 @@
+{% extends "classes/__base.html" %}
+{% load markup %}
+{% load dept_classes %}
+
+{# ########################################### #}
+
+
+
+{% block page_title %}{{ department.name }} Courses{% endblock %}
+{% block title %}{{ department.name }} Course List{% endblock %}
+
+{# ########################################### #}
+
+
+{% block content %}
+
+    <p>
+        {{ department.description|restructuredtext|course_autolink }}
+    </p>
+
+    <ul class="simple">
+    {% for course in department.course_set.active %}
+        <li>
+            <a href="{{ course.get_absolute_url }}">
+                {{ course }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+
+    {% url 'classes-department-list' as link_url %}
+    {% if link_url %}
+    <p>
+        <a href="{{ link_url }}">
+            &larr; Back to the list of departments
+        </a>
+    </p>
+    {% endif %}
+
+{% endblock %}
+
+
+{# ########################################### #}

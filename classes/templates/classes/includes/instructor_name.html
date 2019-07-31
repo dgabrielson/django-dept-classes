@@ -1,0 +1,1 @@
+{# expects 'instructor' #}{% if instructor.active %}{% if instructor.get_absolute_url %}<a href="{{ instructor.get_absolute_url }}">{{ instructor }}</a>{% else %}{{ instructor }}{% endif %}{% else %}[*****]{% endif %}

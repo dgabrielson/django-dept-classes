@@ -1,0 +1,20 @@
+{% extends './_course_detail.html' %}
+
+{% block pagenav %}
+{{ block.super }}
+
+    {# TODO: Check existance #}
+    {% url "classes-restricted-course-exams" slug=course.slug  as url %}
+    {% if url %}
+    <li>
+        <a href="{{ url}}">
+            Exams
+        </a>
+    </li>
+    {% else %}
+        <li>
+            (No exams)
+        </li>
+    {% endif %}
+
+{% endblock %}

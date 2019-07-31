@@ -1,0 +1,42 @@
+{% extends './_course_resources.html' %}
+{% load dept_classes %}
+
+{% block page_title %}{{ course.label }} - Enrollment{% endblock %}
+{% block title %}{{ course.label }} – Enrollment{% endblock %}
+
+{# ########################################### #}
+
+{% block page_breadcrumbs %}
+    {{ block.super }}
+    <span class="divider">&gt;</span>
+    {% url "classes-restricted-course-enrollment" slug=course.slug as page_url %}
+    {% if page_url %}
+        {% if page_url != request.path %}
+            <a href="{{ page_url }}">Enrollment</a>
+        {% else %}
+            Enrollment
+        {% endif %}
+    {% endif %}
+{% endblock page_breadcrumbs %}
+
+{# ########################################### #}
+
+{% block content %}
+
+{# regroup course.section_set.advertised by term as term_list #}
+{% get_advertised_semesters 'term_list' %}
+
+<ul class="simple">
+{% for term in term_list reversed %}
+    {% url "classes-restricted-course-enrollment-term" course_slug=object.slug term_slug=term.slug as link %}
+    {% if link %}
+    <li>
+        <a href="{{ link }}">
+            {{ term }}
+        </a>
+    </li>
+    {% endif %}
+{% endfor %}
+</ul>
+
+{% endblock content %}

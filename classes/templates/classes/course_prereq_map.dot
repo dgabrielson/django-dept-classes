@@ -1,0 +1,42 @@
+{% load dept_classes %}
+digraph course_{{ course.department.code }}_{{ course.code }} {
+    {# nodes #}
+    bgcolor = "transparent";
+    graph [fontname = "helvetica", size="5.3,20"];
+    node [fontname = "helvetica"];
+    edge [fontname = "helvetica"];
+    tooltip = "";
+    newrank = true;
+    compound = true;
+
+    "{{ course.label }}" [label=<<B>{{ course.label }}</B>>, URL="{{ course.get_absolute_url }}", tooltip="{{ course.name }}", style="filled", fillcolor="#fdc086"];
+
+    {% regroup course.prerequisite_set.active by equiv_group as equivs %}
+    {% for equiv in equivs %}
+    subgraph cluster_equiv_{{ equiv.grouper }} {
+        {% if equiv.list|length == 1 %}style = invis;{% endif %}
+        {% for prereq, prev in equiv.list|list_with_prev %}
+        "{{ prereq }}" [label=<{{ prereq }}{% if prereq.minimum_grade %}<BR/><FONT POINT-SIZE="10">{{ prereq.minimum_grade }} or better</FONT>{% endif %}>, shape={% if prereq.corequisite %}polygon, sides=6{% elif prereq.optional %}egg{% else %}box{% endif %}, style="filled{% if prereq.preferred %},rounded{% endif %}" , fixedsize=false, fillcolor={% if prereq.corequisite and prereq.preferred %}"#386cb0"{% elif prereq.optional %}"#bf5b17"{% elif prereq.preferred %}"#7fc97f"{% else %}"#ffff99"{% endif %}, {% if prereq.get_absolute_url %}URL="{{ prereq.get_absolute_url }}", {% endif %}{% if prereq.requisite.get_note %}tooltip="{{ prereq.requisite.get_note }}", {% endif %}];
+        {% endfor %}
+    }
+    {% for prereq, prev in equiv.list|list_with_prev %}
+    {% if prev is None %}
+        "{{ prereq }}" -> "{{ course.label }}" [{% if equiv.list|length != 1 %}ltail=cluster_equiv_{{ equiv.grouper }}, {% endif %}{% if prereq.corequisite %}label=" coreq", dir=none{% elif prereq.optional %}style=dashed, label=" recommended"{% endif %}];
+    {% else %}
+        "{{ prereq }}" -> "{{ prev }}" [dir=none, style=dotted, label=" or"];
+    {% endif %}
+    {% endfor %}
+    {% endfor %}
+#    { rank=same; {% for prereq in course.prerequisite_set.active %}{% if prereq.corequisite and prereq.preferred %}"{{ prereq }}"; {% endif %}{% endfor %}"{{ course.label }}"}
+    { rank=same; {% for equiv in equivs %}"{{equiv.list.0}}"; {% endfor %} };
+    {% for equiv, prev in equivs|list_with_prev %}
+        {% if prev is not None %}
+            "{{prev.list.0}}" -> "{{equiv.list.0}}" [style=invis];
+        {% endif %}
+    {% endfor %}
+
+    {% for future, req in course.reverse_prerequisites %}
+        "{{ future.label }}" [label=<{{ future.label }}{% if req.minimum_grade %}<BR/><FONT POINT-SIZE="10">requires {{ req.minimum_grade}} or better</FONT>{% endif %}>, shape={% if req.corequisite %}polygon, sides=6{% elif req.optional %}egg{% else %}box{% endif %}, style="filled,rounded", fillcolor="#beaed4", URL="{{ future.get_absolute_url }}"; tooltip="{{ future.name }}", ];
+        "{{ course.label }}" -> "{{ future.label }}" [{% if req.corequisite %}style=dotted, label=" coreq", dir=none{% elif req.optional %}style=dashed, label=" recommended"{% endif %}];
+    {% endfor %}
+}

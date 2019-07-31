@@ -1,0 +1,29 @@
+{% extends "classes/__base.html" %}
+
+{# ########################################### #}
+
+
+
+{% block page_title %}Classes{% endblock %}
+{% block title %}Classes{% endblock %}
+
+{# ########################################### #}
+
+
+{% block content %}
+
+<ul class="simple">
+    <li><a href="{% url 'classes-adv-course-list' %}">All courses</a>
+    <li><a href="{% url 'classes-adv-section-list' %}">Current courses</a>
+    <li><a href="{% url 'classes-department-list' %}">Courses by department</a>
+    <li><a href="{% url 'classes-semester-list' %}">Courses by semester</a>
+    <li><a href="{% url 'classes-section-semester-list' %}">Sections by semester</a>
+    <li><a href="{% url 'classes-instructor-list' %}">Sections by instructor</a>
+</ul>
+
+{% endblock %}
+
+
+
+
+{# ########################################### #}

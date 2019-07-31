@@ -1,0 +1,10 @@
+include requirements.txt
+include LICENSE.txt
+#recursive-include aurora/static *
+#recursive-include aurora/templates *
+recursive-include classes/static *
+recursive-include classes/templates *
+
+# added by check_manifest.py
+recursive-include classes *.json
+recursive-include docs *.rst

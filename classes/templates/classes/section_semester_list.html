@@ -1,0 +1,42 @@
+{% extends "classes/__base.html" %}
+
+{# ########################################### #}
+
+
+
+{% block page_title %}Semester List{% endblock %}
+{% block title %}Semester List{% endblock %}
+
+{# ########################################### #}
+
+
+{% block content %}
+
+{% if object_list %}
+    <p>
+        Click on a semester to see the list of available sections.
+    </p>
+    <ul class="simple">
+        {% for object in object_list reversed %}
+            <li>
+                <a href="{% url 'classes-section-semester-detail' slug=object.slug %}">
+                    {{ object }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>
+        There are no semesters available.
+    </p>
+{% endif %}
+
+
+
+
+{% endblock %}
+
+
+
+
+{# ########################################### #}

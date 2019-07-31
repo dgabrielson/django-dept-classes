@@ -1,0 +1,44 @@
+{% extends './sectionhandout_by_course.html' %}
+
+
+{% block page_subtitle %} - {{ filter_object.label }}{% endblock %}
+{% block subtitle %} for {{ filter_object.label }}{% endblock %}
+
+
+{% block page_breadcrumbs %}
+    {{ block.super }}
+    {% url 'classes-outline-by-course-selected' slug=filter_object.slug as url %}
+    {% if url %}
+        <span class="divider">&gt;</span>
+        {% if url != request.path %}
+            <a href="{{ url }}">
+                {{ filter_object.label }}
+            </a>
+        {% else %}
+            {{ filter_object.label }}
+        {% endif %}
+    {% endif %}
+{% endblock page_breadcrumbs %}
+
+
+{% block handout_list %}
+
+{% include './includes/course_handout_info.html' with course=filter_object label_prefix='Course ' %}
+
+{% regroup sectionhandout_list by section.term as term_list %}
+
+<ul class="simple">
+{% for term in term_list %}
+    <li>
+        {{ term.grouper }}:
+        {% for sectionhandout in term.list %}
+            <a href="{{ sectionhandout.get_absolute_url }}">
+                {{ sectionhandout.section.section_name }}
+                {{ sectionhandout.label|capfirst }}
+            </a>{% if not forloop.last %},{% endif %}
+        {% endfor %}
+    </li>
+{% endfor %}
+</ul>
+
+{% endblock handout_list %}

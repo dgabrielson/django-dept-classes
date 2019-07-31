@@ -1,0 +1,13 @@
+{# expects instructor and additional_instructors #}
+{% if instructor %}
+    <tr>
+        <th>Instructor{% if additional_instructors|length > 1 %}s{% endif %}:</th>
+        <td colspan="2">
+            {% spaceless %}
+            {% include './instructor_name.html' %}
+            {% endspaceless %}{% for addl in additional_instructors.active %},
+            {% include './instructor_name.html' with instructor=addl %}
+            {% endfor %}
+        </td>
+    </tr>
+{% endif %}

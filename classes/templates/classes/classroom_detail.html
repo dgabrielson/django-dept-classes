@@ -1,0 +1,45 @@
+{% extends "classes/__base.html" %}
+{% load markup %}
+{% load dept_classes %}
+
+{# ########################################### #}
+
+
+
+{% block page_title %}{{ object }} {% endblock %}
+{% block title %}{{ object }}{% endblock %}
+
+{# ########################################### #}
+
+
+{% block content %}
+
+
+
+{% regroup object.section_set.active_terms by term as term_list %}
+
+List of course sections:
+<ul class="simple">
+    {% for term in term_list reversed %}
+        <li>
+            <strong>
+                {{ term.grouper }}
+            </strong>
+            <ul class="simple">
+                {% for section in term.list %}
+                    <li>
+                        <a href="{{ section.get_absolute_url }}">
+                            {{ section }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+    {% endfor %}
+</ul>
+
+
+{% endblock %}
+
+
+{# ########################################### #}

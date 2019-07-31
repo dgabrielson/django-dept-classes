@@ -1,0 +1,39 @@
+digraph course_legend {
+    {# nodes #}
+    bgcolor = "transparent";
+    graph [fontname = "helvetica", size="5.3,20"];
+    node [fontname = "helvetica"];
+    edge [fontname = "helvetica"];
+    tooltip = "";
+    newrank = true;
+    compound = true;
+
+    "main" [label=<<B>the course</B>>, tooltip="course of interest", style=filled, fillcolor="#fdc086"];
+
+    subgraph cluster_pref_1 {
+        "prereq_preferred" [label=<preferred<BR/>prerequisite>, shape=box, style="filled,rounded", fillcolor="#7fc97f", tooltip="the recommended prerequisite when there are multiple options"];
+        "prereq_alt" [label=<alternate<BR/>prerequisite>, shape=box, style=filled, fillcolor="#ffff99", tooltip="an alternate prerequisite course"];
+    }
+    subgraph cluster_pref_2 {
+        "prereq_coreq" [label=<co-requisite>, shape=polygon, sides=6,  fixedsize=false, style=filled, fillcolor="#386cb0", tooltip="a prerequisite which can be taken concurrently" ];
+        "prereq_coreq_alt" [label=<alternate<BR/>co-requisite>, shape=polygon, sides=6,  fixedsize=false, style=filled, fillcolor="#ffff99", tooltip="an alternate prerequisite which can be taken concurrently" ];
+    }
+    subgraph cluster_pref_3 {
+        style=invis;
+        "prereq_recommended" [label=<recommended>, shape=egg, style=filled, fillcolor="#bf5b17", tooltip="a course which is not a required prerequisite but provides helpful background material" ];
+    }
+    "prereq_preferred" -> "main" [ltail=cluster_pref_1, ];
+    "prereq_alt" -> "prereq_preferred" [dir=none, style=dotted, label=" or"];
+    "prereq_coreq_alt" -> "prereq_coreq" [dir=none, style=dotted, label=" or"];
+    "prereq_coreq" -> "main" [ltail=cluster_pref_2, label=" coreq", dir=none];
+    "prereq_recommended" -> "main" [style=dashed, label=" recommended"];
+
+    {rank=same; "prereq_recommended";  "prereq_preferred"; "prereq_coreq"; };
+    "prereq_preferred" -> "prereq_coreq" [style=invis];
+    "prereq_coreq" -> "prereq_recommended" [style=invis];
+
+    "future1" [label=<future<BR/>course>, shape=box, style="filled,rounded", fillcolor="#beaed4", tooltip="a course for which the course of interest is a prerequisite", ];
+    "future2" [label=<future<BR/>course>, shape=box, style="filled,rounded", fillcolor="#beaed4", tooltip="a course for which the course of interest is a prerequisite", ];
+    "main" -> "future1";
+    "main" -> "future2";
+}

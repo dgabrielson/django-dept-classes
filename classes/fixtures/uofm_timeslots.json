@@ -1,0 +1,288 @@
+[
+    {
+        "pk": 23, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "23:59:00", 
+            "start_time": "00:00:00", 
+            "name": "None", 
+            "day": "n/a"
+        }
+    }, 
+    {
+        "pk": 1, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "09:20:00", 
+            "start_time": "08:30:00", 
+            "name": "Slot 1", 
+            "day": "MWF"
+        }
+    }, 
+    {
+        "pk": 10, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "14:15:00", 
+            "start_time": "13:00:00", 
+            "name": "Slot 10", 
+            "day": "TR"
+        }
+    }, 
+    {
+        "pk": 11, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "15:20:00", 
+            "start_time": "14:30:00", 
+            "name": "Slot 11", 
+            "day": "MWF"
+        }
+    }, 
+    {
+        "pk": 12, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "16:20:00", 
+            "start_time": "15:30:00", 
+            "name": "Slot 12", 
+            "day": "MWF"
+        }
+    }, 
+    {
+        "pk": 13, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "17:20:00", 
+            "start_time": "16:30:00", 
+            "name": "Slot 13", 
+            "day": "MWF"
+        }
+    }, 
+    {
+        "pk": 14, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "15:45:00", 
+            "start_time": "14:30:00", 
+            "name": "Slot 14", 
+            "day": "TR"
+        }
+    }, 
+    {
+        "pk": 15, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "17:15:00", 
+            "start_time": "16:00:00", 
+            "name": "Slot 15", 
+            "day": "TR"
+        }
+    }, 
+    {
+        "pk": 16, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "18:45:00", 
+            "start_time": "17:30:00", 
+            "name": "Slot 16", 
+            "day": "MW"
+        }
+    }, 
+    {
+        "pk": 17, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "18:45:00", 
+            "start_time": "17:30:00", 
+            "name": "Slot 17", 
+            "day": "TR"
+        }
+    }, 
+    {
+        "pk": 2, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "10:20:00", 
+            "start_time": "09:30:00", 
+            "name": "Slot 2", 
+            "day": "MWF"
+        }
+    }, 
+    {
+        "pk": 3, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "11:20:00", 
+            "start_time": "10:30:00", 
+            "name": "Slot 3", 
+            "day": "MWF"
+        }
+    }, 
+    {
+        "pk": 4, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "09:45:00", 
+            "start_time": "08:30:00", 
+            "name": "Slot 4", 
+            "day": "TR"
+        }
+    }, 
+    {
+        "pk": 5, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "11:15:00", 
+            "start_time": "10:00:00", 
+            "name": "Slot 5", 
+            "day": "TR"
+        }
+    }, 
+    {
+        "pk": 6, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "12:20:00", 
+            "start_time": "11:30:00", 
+            "name": "Slot 6", 
+            "day": "MWF"
+        }
+    }, 
+    {
+        "pk": 7, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "13:20:00", 
+            "start_time": "12:30:00", 
+            "name": "Slot 7", 
+            "day": "MWF"
+        }
+    }, 
+    {
+        "pk": 8, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "14:20:00", 
+            "start_time": "13:30:00", 
+            "name": "Slot 8", 
+            "day": "MWF"
+        }
+    }, 
+    {
+        "pk": 9, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "12:45:00", 
+            "start_time": "11:30:00", 
+            "name": "Slot 9", 
+            "day": "TR"
+        }
+    }, 
+    {
+        "pk": 18, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "22:00:00", 
+            "start_time": "19:00:00", 
+            "name": "Slot E1", 
+            "day": "M"
+        }
+    }, 
+    {
+        "pk": 19, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "22:00:00", 
+            "start_time": "19:00:00", 
+            "name": "Slot E2", 
+            "day": "T"
+        }
+    }, 
+    {
+        "pk": 20, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "22:00:00", 
+            "start_time": "19:00:00", 
+            "name": "Slot E3", 
+            "day": "W"
+        }
+    }, 
+    {
+        "pk": 21, 
+        "model": "classes.timeslot", 
+        "fields": {
+            "active": true, 
+            "created": "2000-01-01T00:00:00.00Z", 
+            "modified": "2000-01-01T00:00:00.00Z",
+            "stop_time": "22:00:00", 
+            "start_time": "19:00:00", 
+            "name": "Slot E4", 
+            "day": "R"
+        }
+    }
+]

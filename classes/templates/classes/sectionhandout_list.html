@@ -1,0 +1,78 @@
+{% extends "classes/__base.html" %}
+
+{# ########################################### #}
+
+{% block page_title %}{{ sectionhandout_title_plural|title }}{% block page_subtitle %}{% endblock %}{% endblock %}
+{% block title %}{{ sectionhandout_title_plural|title }}{% block subtitle %}{% endblock %}{% endblock %}
+
+{# ########################################### #}
+
+
+{% block content %}
+
+{% block content_pagenav %}
+<ul class="pagenav">
+    <li class="category">
+        Archive
+    </li>
+    {% url 'classes-outline-by-course' as url %}
+    {% if url %}
+    <li>
+        <a href="{{ url }}">By course</a>
+    </li>
+    {% endif %}
+    {% url 'classes-outline-by-term' as url %}
+    {% if url %}
+    <li>
+        <a href="{{ url }}">By term</a>
+    </li>
+    {% endif %}
+</ul>
+{% endblock %}
+
+<p>
+    Should major disruptions to University activities occur as a result of a
+    pandemic or other event, the course content, marks breakdown and other
+    provisions in syllabuses or course outlines
+    may be adjusted as the circumstances warrant.
+</p>
+
+{% block handout_list %}
+{% regroup sectionhandout_list by section.term as term_list %}
+
+{% for term in term_list %}
+    <p>
+        {% if term.list|length != 1 %}
+            {{ sectionhandout_title_plural|capfirst }}
+        {% else %}
+            {{ sectionhandout_title|capfirst }}
+        {% endif %}
+        for {{ term.grouper }}:
+    </p>
+    <ul class="simple">
+        {% for sectionhandout in term.list %}
+            <li> <a href="{{ sectionhandout.get_absolute_url }}">{{ sectionhandout.sectionname_label_capfirst }}</a>
+        {% endfor %}
+    </ul>
+{% endfor %}
+{% endblock %}
+
+{% endblock %}
+
+
+{# ########################################### #}
+
+{% block page_breadcrumbs %}
+    {{ block.super }}
+    {% url 'classes-outline-list' as url %}
+    {% if url %}
+        <span class="divider">&gt;</span>
+        {% if url != request.path %}
+            <a href="{{ url }}">{{ sectionhandout_title_plural|title }}</a>
+        {% else %}
+            {{ sectionhandout_title_plural|title }}
+        {% endif %}
+    {% endif %}
+{% endblock page_breadcrumbs %}
+
+{# ########################################### #}

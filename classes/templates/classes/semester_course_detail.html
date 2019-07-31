@@ -1,0 +1,33 @@
+{% extends "classes/__base.html" %}
+
+{# ########################################### #}
+
+{% block page_title %}{{ course.label }}{% endblock %}
+{% block title %}{{ course.label }}{% endblock %}
+
+{# ########################################### #}
+
+
+{% block content %}
+
+    {% include 'classes/includes/course_detail.html' %}
+    {% include 'classes/includes/course_detail_extra.html' %}
+    {% include 'classes/includes/course_section_list.html' %}
+
+{% endblock %}
+
+
+{# ########################################### #}
+
+{% block page_breadcrumbs %}
+    {% url 'classes-semester-detail' slug=semester.slug as model_list_url %}
+    {% if model_list_url %}
+        <span class="divider">&gt;</span>
+        <a href="{{ model_list_url }}">{{ semester }}</a>
+    {% endif %}
+
+    <span class="divider">&gt;</span>
+    {{ course.label }}
+{% endblock page_breadcrumbs %}
+
+{# ########################################### #}

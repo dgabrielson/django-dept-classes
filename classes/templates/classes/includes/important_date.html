@@ -1,0 +1,6 @@
+{% if obj.end_date %}
+    {{ obj.date|date:"F j" }} – {{ obj.end_date|date:"F j" }}:
+{% else %}
+    {{ obj.date|date:"F j" }}:
+{% endif %}
+{{ obj.title }}{% if obj.university_closed %} (University Closed){% else %}{% if obj.no_class %} (No classes){% endif %}{% endif %}

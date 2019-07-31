@@ -1,0 +1,49 @@
+{% autoescape off %}\documentclass[12pt]{article}
+
+\usepackage{palatino}
+\usepackage{geometry}
+\usepackage{longtable}
+\usepackage[utf8]{inputenc}
+
+
+\geometry{letterpaper,margin=1cm}
+
+
+\newcommand{\cellformat}[1]{\rule[0.4ex]{0.085\textwidth}{1.25pt} \small\textbf{#1}}
+
+\pagestyle{empty}
+\setlength{\parindent}{0em}
+
+\begin{document}
+
+\vspace*{1cm}
+\begin{center}
+    {\Large\textbf{ {{ semester }} }}
+
+    \vspace*{1cm}
+
+    \begin{longtable}{|l|l|l|l|l|}
+        \hline
+        \textbf{Monday} & \textbf{Tuesday} & \textbf{Wednesday} & \textbf{Thursday} & \textbf{Friday} \\
+        \hline
+        \endhead
+        \hline
+        \endfoot
+        %%%%%%%%%%%%%%%%%%
+        {% for row in tabular_list %}%
+        {% for elem in row %}%
+            {{ elem }}
+            {% if not forloop.last %}%
+                &
+            {% endif %}%
+        {% endfor %}%
+            \\
+        {% endfor %}%
+        %%%%%%%%%%%%%%%%%%
+    \end{longtable}
+
+\end{center}
+
+
+\end{document}
+{% endautoescape %}

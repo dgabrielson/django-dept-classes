@@ -1,0 +1,19 @@
+
+{% url 'classes-index' as link_url %}
+{% if link_url %}
+    <a href="{{ link_url }}"{% if link_url in current_url %} class="selected"{% endif %}>
+        Courses
+    </a>
+    {% if link_url in current_url %}
+        <ul>
+            {% url 'classes-outline-list' as link_url %}
+            {% if link_url %}
+                <li>
+                    <a href="{{ link_url }}"{% if link_url in current_url %} class="selected"{% endif %}>
+                        Outlines
+                    </a>
+                </li>
+            {% endif %}
+        </ul>
+    {% endif %}
+{% endif %}

@@ -1,0 +1,9 @@
+
+{% url "classes-restricted-course-list" as app_top_url %}
+{% if app_top_url %}
+    {% if app_top_url != request.path %}
+        <a href="{{ app_top_url }}">Course info</a>
+    {% else %}
+         Course info
+    {% endif %}
+{% endif %}

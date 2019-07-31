@@ -1,0 +1,102 @@
+{% extends "./course_list.html" %}
+{% load markup %}
+
+{# ########################################### #}
+
+{% block page_title %}{{ course.label }}{% endblock %}
+{% block title %}{{ course.label }} – Course Information{% endblock %}
+
+{# ########################################### #}
+
+
+{% block content %}
+
+<h2> {{ course.name }} </h2>
+
+<ul class="pagenav">{% block pagenav %}
+    <li>
+        <a href="{{ course.get_absolute_url }}">
+            Public page
+        </a>
+    </li>
+
+    {% url "classes-outline-by-course-selected" slug=course.slug as url %}
+    {% if url and course.section_set.active.sectionhandout_qs.exists %}
+        <li>
+            <a href="{{ url }}">
+                Syllabii
+            </a>
+        </li>
+    {% else %}
+        <li>
+            (No syllabii)
+        </li>
+    {% endif %}
+
+    {% url "classes-restricted-course-handouts" slug=course.slug  as url %}
+    {% if url and course.coursehandout_set.active %}
+    <li>
+        <a href="{{ url}}">
+            Other course documents
+        </a>
+    </li>
+    {% else %}
+        <li>
+            (No other documents)
+        </li>
+    {% endif %}
+
+    {% url "classes-restricted-course-enrollment" slug=course.slug as url %}
+    {% if url %}
+        <li>
+            <a href="{{ url }}">
+                Enrollments
+            </a>
+        </li>
+    {% endif %}
+
+{% endblock pagenav %}</ul>
+
+{% block calendar_desc %}
+
+<h2>Calendar description</h2>
+<p>
+    {{ course.description|restructuredtext }}
+</p>
+
+{% endblock %}
+
+
+{% block additional_info %}
+
+<h2>Detailed program</h2>
+
+{% if course.detailed_program %}
+    {{ course.detailed_program|restructuredtext }}
+{% else %}
+    <p>
+        (No detailed program is available for this course.)
+    </p>
+{% endif %}
+
+{% endblock additional_info %}
+
+{% endblock content %}
+
+
+{# ########################################### #}
+
+{% block page_breadcrumbs %}
+    <span class="divider">&gt;</span>
+    {% url "classes-restricted-course-detail" slug=course.slug as page_url %}
+    {% if page_url %}
+        {% if page_url != request.path %}
+            <a href="{{ page_url }}">{{ course.label }}</a>
+        {% else %}
+            {{ course.label }}
+        {% endif %}
+    {% endif %}
+
+{% endblock page_breadcrumbs %}
+
+{# ########################################### #}

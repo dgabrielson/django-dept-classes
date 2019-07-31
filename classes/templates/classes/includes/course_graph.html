@@ -1,0 +1,44 @@
+{% if course.prerequisite_set.active or course.reverse_prerequisites %}
+<script type="text/javascript">
+    function courseGraphToggle()
+    {
+        var x = document.getElementById("course_prereq_map");
+        var y = document.getElementById("course-map-display-indicator")
+        if (x.style.display === "none") {
+            x.style.display = "block";
+            y.innerHTML = "Hide course graph";
+
+        } else {
+            x.style.display = "none";
+            y.innerHTML = "Show course graph";
+        }
+
+    }
+</script>
+<strong id="course-graph-title" onclick="courseGraphToggle()"><span id="course-map-display-indicator">Hide course graph</span></strong>
+<div id="course_prereq_map" style="display:block">
+<div style="text-align:center">
+{{ course.map_svg_data }}
+</div>
+
+<ul class="pagenav">
+    <li>
+        <a href="{% url 'classes-course-prereq-svg' slug=course.slug %}">
+            Graph only
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'classes-course-prereq-svg-legend' %}">
+            legend
+        </a>
+    </li>
+    <li>
+        <a href="{% url 'classes-course-list-svg' %}">
+            all courses
+        </a>
+    </li>
+
+</ul>
+</div>
+
+{% endif %}

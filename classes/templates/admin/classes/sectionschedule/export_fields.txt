@@ -1,0 +1,13 @@
+section.term
+section.course.label:Course
+section.section_name:Section
+section.crn:CRN
+type
+timeslot.get_start_time_display:Start time
+timeslot.get_stop_time_display:Stop time
+timeslot.get_day_display:Days
+instructor:Instructor
+room:Location
+section.registration
+section.capacity
+section.waitlist_registration:Waitlist

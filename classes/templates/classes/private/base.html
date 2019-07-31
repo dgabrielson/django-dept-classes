@@ -1,0 +1,9 @@
+{% extends "../__base.html" %}
+
+
+{% block app_breadcrumbs %}
+    <span class="divider">&gt;</span>
+    {% include './includes/breadcrumbs.html' %}
+    {% block page_breadcrumbs %}
+    {% endblock %}
+{% endblock app_breadcrumbs %}

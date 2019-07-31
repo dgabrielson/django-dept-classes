@@ -1,0 +1,40 @@
+{% extends "classes/__base.html" %}
+{% load markup %}
+{% load dept_classes %}
+
+{# ########################################### #}
+
+
+
+{% block page_title %}{{ object }} Section List{% endblock %}
+{% block title %}{{ object }} Section List{% endblock %}
+
+{# ########################################### #}
+
+
+{% block content %}
+
+
+    <ul class="simple">
+    {% for section in object.section_set.advertised %}
+        <li>
+            <a href="{{ section.get_absolute_url }}">
+                {{ section }}
+            </a>
+        </li>
+    {% endfor %}
+    </ul>
+
+    {% url 'classes-section-semester-list' as link_url %}
+    {% if link_url %}
+    <p>
+        <a href="{{ link_url }}">
+            &larr; Back to the list of semesters
+        </a>
+    </p>
+    {% endif %}
+
+{% endblock %}
+
+
+{# ########################################### #}
